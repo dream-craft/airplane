@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "module": "ES2022",
+    "moduleResolution": "Node16",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2022",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noEmit": false,
+    "declarationMap": true
+  },
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"],
+  "include": ["src"],
+  "references": [
+    {
+      "path": "../api-types"
+    }
+  ]
+}

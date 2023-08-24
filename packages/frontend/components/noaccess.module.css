@@ -1,0 +1,17 @@
+  .header2 {
+    margin-top: 32px;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
+  }
+
+  .container p {
+    margin-left: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

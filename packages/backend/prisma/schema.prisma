@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model MockServer {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String    @default("")
+  httpMock    HttpMock?
+  wsMock      WsMock?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+}
+
+model HttpHeader {
+  id                         Int                       @id @default(autoincrement())
+  name                       String
+  value                      String                    @default("")
+  httpMockEndpointResponse   HttpMockEndpointResponse? @relation(fields: [httpMockEndpointResponseId], references: [id])
+  httpMockEndpointResponseId Int?
+  httpMockEndpoint           HttpMockEndpoint?         @relation(fields: [httpMockEndpointId], references: [id])
+  httpMockEndpointId         Int?
+  createdAt                  DateTime                  @default(now())
+  updatedAt                  DateTime                  @updatedAt
+  deletedAt                  DateTime?
+}
+
+model HttpMock {
+  id                Int                @id @default(autoincrement())
+  baseUrl           String             @default("")
+  mockServer        MockServer         @relation(fields: [mockServerId], references: [id])
+  mockServerId      Int                @unique
+  httpMockEndpoints HttpMockEndpoint[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  deletedAt         DateTime?
+}
+
+model HttpMockEndpoint {
+  id                    Int                        @id @default(autoincrement())
+  name                  String                     @default("")
+  description           String                     @default("")
+  httpMock              HttpMock                   @relation(fields: [httpMockId], references: [id])
+  httpMockId            Int
+  method                String                     @default("")
+  path                  String                     @default("")
+  allowedRequestHeaders HttpHeader[]
+  currentResponse       HttpMockEndpointResponse?  @relation("currentResponse", fields: [currentResponseId], references: [id])
+  currentResponseId     Int?
+  responses             HttpMockEndpointResponse[] @relation("responses")
+  createdAt             DateTime                   @default(now())
+  updatedAt             DateTime                   @updatedAt
+  deletedAt             DateTime?
+}
+
+model HttpMockEndpointResponse {
+  id                   Int                @id @default(autoincrement())
+  description          String             @default("")
+  statusCode           Int
+  headers              HttpHeader[]
+  body                 String
+  httpMockEndpoint     HttpMockEndpoint   @relation("responses", fields: [httpMockEndpointId], references: [id])
+  httpMockEndpointId   Int
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  deletedAt            DateTime?
+  currentResponseFroms HttpMockEndpoint[] @relation("currentResponse")
+}
+
+model WsMock {
+  id           Int        @id @default(autoincrement())
+  baseUrl      String     @default("")
+  mockServer   MockServer @relation(fields: [mockServerId], references: [id])
+  mockServerId Int        @unique
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  deletedAt    DateTime?
+}

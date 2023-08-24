@@ -1,0 +1,17 @@
+{
+  "name": "utility",
+  "version": "0.0.0",
+  "description": "utility functions",
+  "license": "MIT",
+  "author": "dream-craft",
+  "type": "module",
+  "scripts": {
+    "start:db:local": "ts-node --esm ./scripts/start-db-local.ts"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.18",
+    "chalk": "5.3.0",
+    "ts-node": "10.9.1",
+    "typescript": "5.1.6"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "airplane",
+  "version": "0.0.0",
+  "description": "fly high ✈️",
+  "license": "MIT",
+  "author": "dream-craft",
+  "scripts": {
+    "prepare": "husky install",
+    "start:db:local": "cd packages/utility && npm run start:db:local"
+  },
+  "lint-staged": {
+    "package.json": "sort-package-json",
+    "*.ts": [
+      "organize-imports-cli"
+    ]
+  },
+  "devDependencies": {
+    "husky": "8.0.0",
+    "lint-staged": "13.2.3",
+    "organize-imports-cli": "0.10.0",
+    "sort-package-json": "2.5.1"
+  }
+}

@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Optional: This centers vertically as well */
+    height: 50vh; /* Adjust to your container's dimensions */
+  }
+
+
+.container p {
+    margin-left: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.header2 {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.mockServerName {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-right: 10px;
+}
