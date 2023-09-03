@@ -15,7 +15,9 @@ const SearchNavDesc = ({ mockServerId, children, onClick }: SearchNavDescProps) 
   };
 
   return (
-    <a className={styles.serverName} onClick={handleClick}>{children}</a>
+    <a className={styles.serverName} onClick={handleClick} href="/mockserver/abc">
+      {children}
+    </a>
   );
 };
 export default SearchNavDesc;
